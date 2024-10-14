@@ -1,0 +1,63 @@
+pwd - 1234
+
+sudo apt-get update
+sudo apt-get install redis
+
+sudo service redis-server start
+redis-cli
+redis-cli -n 1
+
+https://redis.io/docs/latest/commands/?group=string
+
+SET worker John
+GET worker
+DEL worker
+
+LPUSH worekrs John
+LPUSH workers Jenna
+RPUSH workers Jenna
+
+HSET workers1 third Lena
+HGETALL workers1
+HKEYS workers1
+HVALS workers1
+HDEL first
+
+SADD workers John
+SMEMBERS workers
+
+
+LRANGE workers 0 -1
+LINDEX workers 1
+LPOP workers
+LINSERT worker BEFORE 'Michael' 'Monica'
+FLUSHALL
+
+HSET workers first 'John'
+HGETALL workers
+HKEYS workers
+HVALS workers
+HGET workers first
+HDEL workers first
+
+SADD workers 'John' 'Jenna' 'Monica'
+SDIFF workers workers1
+SINTER workers workers1
+SMEMBERS workers
+
+ZADD workers 13 John
+ZRANGE workers 0 -1 WITHSCORES
+ZINCRBY wokers 11 John
+ZREVRANGE workers 0 -1 WITHSCORES
+
+EXPIRE worker 10
+
+MULTI
+.
+.
+.
+EXCEC
+
+
+
+
