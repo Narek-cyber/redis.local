@@ -28,12 +28,9 @@ class RedisTestCommand extends Command
     {
         $str = 'some string';
         $result = '';
-        if (Cache::has('my_string')) {
-            $result = Cache::get('my_string');
-        } else {
-            Cache::put('my_string', $str);
-            $result = $str;
-        }
-        dd($result);
+        $str = Cache::remember('my_string', 60 * 60, function () use ($str) {
+            return $str;
+        });
+        dd($str);
     }
 }
