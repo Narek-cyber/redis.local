@@ -43,6 +43,10 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Cache::get("posts:$id");
+        if (!Cache::has("posts:$id")) {
+            Cache::put('posts:' . $post->id, $post);
+        }
+
         return response()->json([
             'post' => $post,
         ]);
