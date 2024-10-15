@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class RedisTestCommand extends Command
 {
@@ -26,11 +27,6 @@ class RedisTestCommand extends Command
      */
     public function handle()
     {
-        $str = 'some string';
-        $result = '';
-        $str = Cache::remember('my_string', 60 * 60, function () use ($str) {
-            return $str;
-        });
-        dd($str);
+        Redis::set('some_key', 'some_value');
     }
 }
