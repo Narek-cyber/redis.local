@@ -28,14 +28,11 @@ class RedisTestCommand extends Command
      */
     public function handle()
     {
-//        $post = Post::query()->findOrFail(1);
-//        Redis::set("posts:$post->id", $post);
-
-//        $post = Redis::get("posts:1");
-//        $post = Post::make((array)json_decode($post));
-
-//        $post = Redis::lpush('posts', 'new_post', 'another_post');
-        $posts = Redis::lrange('posts', 0, -1);
-        dd($posts);
+        $before = microtime(true);
+        $posts = Post::all();
+        Cache::put('posts:all', $posts);
+        $posts = Cache::get('posts:all');
+        $after = microtime(true);
+        dd($after - $before);
     }
 }
